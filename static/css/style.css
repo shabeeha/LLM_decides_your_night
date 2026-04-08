@@ -342,6 +342,13 @@ body {
   line-height: 1.6;
 }
 
+.timer-checkin {
+  margin-top: 16px;
+  font-size: 1rem;
+  color: rgba(255,255,255,0.55);
+  font-style: italic;
+}
+
 .btn-start {
   background: linear-gradient(135deg, #f9c74f, #f97316);
   color: #1a0a2e;
