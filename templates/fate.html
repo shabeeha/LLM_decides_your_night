@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Decide Your Fate 😈</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body class="page-fate">
+
+  <div class="card fate-card">
+    <div class="devil-emoji">😈</div>
+    <h2 class="fate-title">The night is yours…</h2>
+    <p class="fate-sub">Press below and let the AI decide what happens next.</p>
+
+    <button class="btn btn-fate" id="fate-btn" onclick="decideFate()">
+      🔮 Click here to decide your fate
+    </button>
+
+    <div class="suggestion-box" id="suggestion-box" style="display:none;">
+      <p class="suggestion-text" id="suggestion-text"></p>
+      <div class="photo-reminder" style="margin-top: 16px; margin-bottom: 0;">📸 PHOTO FIRST. THEN NEXT STEP.</div>
+      <button class="btn btn-next" onclick="decideFate()">
+        Done that! What's next? 🔥
+      </button>
+    </div>
+
+    <div class="loading" id="loading" style="display:none;">
+      <span class="spinner">✨</span> Consulting the universe…
+    </div>
+  </div>
+
+  <script>
+    async function decideFate() {
+      const btn = document.getElementById('fate-btn');
+      const loading = document.getElementById('loading');
+      const box = document.getElementById('suggestion-box');
+      const text = document.getElementById('suggestion-text');
+
+      btn.style.display = 'none';
+      loading.style.display = 'block';
+      box.style.display = 'none';
+
+      try {
+        const res = await fetch('/decide', { method: 'POST' });
+        const data = await res.json();
+        text.textContent = data.suggestion;
+        box.style.display = 'block';
+      } catch (e) {
+        text.textContent = '😅 Something went wrong — but the night is still yours!';
+        box.style.display = 'block';
+      } finally {
+        loading.style.display = 'none';
+      }
+    }
+  </script>
+
+</body>
+</html>

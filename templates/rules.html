@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ground Rules 📋</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body class="page-rules">
+
+  <div class="card rules-card">
+    <h2 class="section-title">A checklist of how it starts 😈</h2>
+    <div class="photo-reminder">Ground rule —<br>📸 Click a photo of every step!</div>
+    <p class="rules-intro">Your wife has spoken. Follow these in order:</p>
+
+    <ul class="checklist" id="checklist">
+      {% for step in steps %}
+      <li class="check-item" data-index="{{ loop.index0 }}">
+        <span class="check-box">☐</span>
+        <span class="check-text">{{ step }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+
+    <div class="photo-reminder" style="margin-top: 24px; margin-bottom: 0;">📸 DID YOU CLICK A PHOTO? DON'T YOU DARE SKIP IT.</div>
+
+    <a href="/fate" class="btn btn-done" id="done-btn">
+      ✅ List is done — Let's gooo!
+    </a>
+  </div>
+
+  <script>
+    const items = document.querySelectorAll('.check-item');
+    items.forEach(item => {
+      item.addEventListener('click', () => {
+        item.classList.toggle('checked');
+        const box = item.querySelector('.check-box');
+        box.textContent = item.classList.contains('checked') ? '✅' : '☐';
+      });
+    });
+  </script>
+
+</body>
+</html>

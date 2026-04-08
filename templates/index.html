@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Date Night Invitation 💌</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body class="page-invite">
+
+  <div class="card invite-card">
+    <div class="photo-frame">
+      <!-- Drop your couple photo as static/images/us.jpg -->
+      <img src="/static/images/us.jpeg" alt="Us" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+      <div class="photo-placeholder">💑</div>
+    </div>
+
+    <p class="tag">Your wife is blocking your calendar on</p>
+    <h1 class="headline">Friday Night<br><span class="date-highlight">10th April</span></h1>
+    <p class="subline">…for the most <em>fun, wild</em> date night of your life! 🔥</p>
+
+    <p class="question">Do you accept the invitation?</p>
+
+    <div class="btn-row">
+      <a href="/rules" class="btn btn-yes">Yes 😏</a>
+      <a href="/rules" class="btn btn-hell-yes" id="hell-yes-btn">Hell Yesss 🤩🔥</a>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <script>
+    document.getElementById('hell-yes-btn').addEventListener('click', function(e) {
+      e.preventDefault();
+      const btn = this;
+
+      // Multi-burst cracker effect
+      const duration = 1800;
+      const end = Date.now() + duration;
+
+      const colors = ['#f97316', '#dc2626', '#a855f7', '#f9c74f', '#ec4899', '#ffffff'];
+
+      // Left cannon
+      confetti({ particleCount: 60, angle: 60, spread: 70, origin: { x: 0, y: 0.65 }, colors });
+      // Right cannon
+      confetti({ particleCount: 60, angle: 120, spread: 70, origin: { x: 1, y: 0.65 }, colors });
+
+      // Continuous bursts from center
+      const interval = setInterval(() => {
+        if (Date.now() > end) { clearInterval(interval); return; }
+        confetti({
+          particleCount: 18,
+          angle: Math.random() * 360,
+          spread: 60,
+          origin: { x: Math.random() * 0.6 + 0.2, y: Math.random() * 0.4 + 0.2 },
+          colors,
+          scalar: 1.1,
+        });
+      }, 120);
+
+      // Navigate after the party
+      setTimeout(() => { window.location.href = btn.href; }, duration + 200);
+    });
+  </script>
+
+</body>
+</html>
