@@ -35,18 +35,29 @@
       </div>
     </div>
 
-    <p class="timer-tease">Get ready for the most fun,<br><em>wild, crazy night of your life 🔥</em></p>
+    <p class="timer-tease" id="timer-tease">Get ready for the most fun,<br><em>wild, crazy night of your life 🔥</em></p>
+
+    <a href="/rules" class="btn btn-start" id="start-btn" style="display:none;">
+      🔥 Start your date night
+    </a>
   </div>
 
   <script>
-    const target = new Date('2026-04-10T21:00:00').getTime();
+    const target = new Date('2026-04-10T21:00:00-04:00').getTime();
+    let expired = false;
 
     function update() {
       const now = Date.now();
       const diff = target - now;
 
-      if (diff <= 0) {
-        document.getElementById('countdown').innerHTML = '<p class="its-time">It\'s time! 🎉🔥</p>';
+      if (diff <= 0 && !expired) {
+        expired = true;
+        document.getElementById('days').textContent    = '00';
+        document.getElementById('hours').textContent   = '00';
+        document.getElementById('minutes').textContent = '00';
+        document.getElementById('seconds').textContent = '00';
+        document.getElementById('timer-tease').innerHTML = "<span class='its-time'>It's time! 🎉🔥</span><br><span class='its-time-sub'>The night is yours!</span>";
+        document.getElementById('start-btn').style.display = 'inline-block';
         return;
       }
 
