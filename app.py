@@ -23,6 +23,10 @@ def index():
 def rules():
     return render_template("rules.html", steps=COMPLETED_STEPS)
 
+@app.route("/timer")
+def timer():
+    return render_template("timer.html")
+
 @app.route("/fate")
 def fate():
     return render_template("fate.html")
