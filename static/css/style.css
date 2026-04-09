@@ -509,17 +509,26 @@ body {
   margin-bottom: 4px;
 }
 
-/* ── End of night link ── */
-.btn-end-night {
-  display: block;
-  margin-top: 20px;
-  font-size: 0.85rem;
-  color: rgba(255,255,255,0.35);
+/* ── End of night corner button ── */
+.btn-end-night-corner {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #fff;
   text-decoration: none;
-  text-align: center;
-  transition: color 0.2s;
+  background: linear-gradient(135deg, #a855f7, #7c3aed);
+  border-radius: 20px;
+  padding: 10px 18px;
+  box-shadow: 0 4px 16px rgba(168,85,247,0.5);
+  transition: transform 0.15s, box-shadow 0.15s;
+  z-index: 100;
 }
-.btn-end-night:hover { color: rgba(255,255,255,0.7); }
+.btn-end-night-corner:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(168,85,247,0.7);
+}
 
 /* ── Ending page ── */
 .page-ending {
