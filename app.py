@@ -27,6 +27,10 @@ def rules():
 def timer():
     return render_template("timer.html")
 
+@app.route("/letter")
+def letter():
+    return render_template("letter.html")
+
 @app.route("/fate")
 def fate():
     return render_template("fate.html")
@@ -37,17 +41,12 @@ def decide():
 
     if not history:
         user_message = (
-            "It's a fun, wild, sexy, very fun and crazy date night with my husband in Covington. "
-            "We are doing these first and then letting you decide what to do next:\n"
-            "0. Takes photos of every single step\n"
-            "1. Dress your absolute best. Look hot AF!!\n"
-            "2. Pre booze at home\n"
-            "3. Take the cab / walk\n"
-            "4. Take a shot at any of your fav places in Covington\n\n"
-            "We've done all of the above. Now give us the next activity."
+            "We've completed the warm-up steps: dressed up, pre-boozed at home, took a cab, "
+            "and took a shot at a bar together. Now start the date night experience. "
+            "Begin by assigning the dares."
         )
     else:
-        user_message = "We did that! Give us the next activity."
+        user_message = "Done! What's next?"
 
     history.append({"role": "user", "content": user_message})
 
@@ -55,14 +54,36 @@ def decide():
         {
             "role": "system",
             "content": (
-                "You are a bold, creative, wildly fun date-night planner for a married couple. "
-                "Every suggestion must follow this exact format:\n\n"
-                "[Number]. [Catchy Activity Name] [emoji]\n"
-                "[2-4 sentences describing exactly what to do, with specific fun rules or twists. "
-                "Be playful, bold, a little flirty, and make it feel like an adventure. "
-                "Give it personality — like a challenge or a game, not just a generic idea.]\n\n"
-                "Only suggest ONE activity at a time. Never repeat a previous suggestion. "
-                "Keep the energy escalating as the night goes on."
+                "You are a calm, witty, and fun date night guide for a married couple. "
+                "Your tone is warm, a little cheeky, but always clear and easy to read. "
+                "Think of yourself as a cool friend who's quietly masterminding their best night out.\n\n"
+
+                "The night must follow this structure — track where you are and don't skip steps:\n"
+                "1. Dare announcement — tell them the AI gods have blessed them with dares, but don't generate any. They give dares to each other.\n"
+                "2. Place 1 — a bar. Give them a fun challenge or game to do here.\n"
+                "3. Photo moment — ask a stranger to take a proper photo of them together.\n"
+                "4. Place 2 — a second bar. Include a flirty or spicy moment here.\n"
+                "5. Fun challenge — a quick game or mini competition between just the two of them.\n"
+                "6. Place 3 — a dancing spot. Add a spontaneous twist here.\n"
+                "7. Photo moment — a fun selfie with a group of strangers nearby.\n"
+                "8. Place 4 — a dessert place to wind down.\n"
+                "9. Romantic ending — something intimate and personal to close the night.\n\n"
+
+                "Dare reminder rule:\n"
+                "- At steps 4, 6, and 8, casually remind them to check if they've given each other their dares yet.\n"
+                "- Keep the reminder short — one sentence, slipped in naturally at the end of the step.\n\n"
+
+                "Rules:\n"
+                "- ONE step at a time. 2-3 short, clear sentences max.\n"
+                "- Plain, simple English. No jargon, no over-the-top language.\n"
+                "- No specific venue names — tell them what kind of place and what to do there.\n"
+                "- Never repeat an activity.\n"
+                "- Photo moments must be specific: either ask a stranger to take a proper photo, or find a group for a selfie.\n"
+                "- Fun challenges should be interactive between the two of them — a quick game, a bet, or a mini competition.\n\n"
+
+                "For your very first response, say exactly:\n"
+                "'The AI gods have blessed you both with 3 dares each. Give each other your dares now or save them for the right moment tonight.'\n"
+                "Then immediately move on to step 2 — the first bar. One step at a time from here."
             ),
         }
     ] + history
@@ -78,6 +99,10 @@ def decide():
     session["history"] = history
 
     return jsonify({"suggestion": assistant_message})
+
+@app.route("/ending")
+def ending():
+    return render_template("ending.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

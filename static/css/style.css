@@ -270,6 +270,100 @@ body {
 
 .check-box { font-size: 1.5rem; flex-shrink: 0; }
 
+/* ── Letter page ── */
+.page-letter {
+  background: #f5ece0;
+  padding: 32px 16px;
+  min-height: 100vh;
+  align-items: flex-start;
+}
+
+.letter-paper {
+  background: #fdf6ee;
+  border-radius: 12px;
+  max-width: 520px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 48px 44px;
+  position: relative;
+  box-shadow: 0 8px 40px rgba(180,130,100,0.2);
+  color: #4a2e1a;
+  overflow: hidden;
+}
+
+/* Floral corner emojis */
+.floral {
+  position: absolute;
+  font-size: 2.8rem;
+  opacity: 0.25;
+  line-height: 1;
+}
+.floral-tl { top: 8px;  left: 8px;  transform: rotate(20deg) scaleX(-1); }
+.floral-tr { top: 8px;  right: 8px; transform: rotate(-20deg); }
+.floral-bl { bottom: 8px; left: 8px;  transform: rotate(-20deg) scaleX(-1); }
+.floral-br { bottom: 8px; right: 8px; transform: rotate(20deg); }
+
+.letter-content { position: relative; z-index: 1; }
+
+.letter-dear {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.2rem;
+  color: #7c4a2a;
+  margin-bottom: 24px;
+  border-bottom: 2px dotted #e8c4a0;
+  padding-bottom: 12px;
+}
+
+.letter-heart { font-size: 1.6rem; }
+
+.letter-text {
+  font-family: 'Lora', serif;
+  font-size: 1.05rem;
+  line-height: 1.85;
+  margin-bottom: 18px;
+  color: #5a3820;
+}
+
+.letter-sign-box {
+  background: #f4a7b9;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-top: 28px;
+  margin-bottom: 4px;
+}
+
+.letter-sign-text {
+  font-family: 'Lora', serif;
+  font-size: 0.95rem;
+  color: #7c2040;
+  margin-bottom: 6px;
+}
+
+.letter-sign-name {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #7c2040;
+}
+
+.btn-letter-next {
+  display: block;
+  margin-top: 28px;
+  background: linear-gradient(135deg, #e87ea1, #c2456a);
+  color: #fff;
+  text-align: center;
+  font-family: 'Georgia', serif;
+  box-shadow: 0 4px 20px rgba(194,69,106,0.4);
+}
+.btn-letter-next:hover { transform: scale(1.03); box-shadow: 0 8px 28px rgba(194,69,106,0.6); }
+
+@media (max-width: 480px) {
+  .letter-paper  { padding: 36px 24px; }
+  .letter-dear   { font-size: 1.8rem; }
+  .letter-text   { font-size: 0.95rem; }
+  .floral        { font-size: 2rem; }
+}
+
 /* ── Timer page ── */
 .page-timer {
   background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #3d1a5e 100%);
@@ -413,6 +507,71 @@ body {
   line-height: 1.7;
   color: #fff;
   margin-bottom: 4px;
+}
+
+/* ── End of night link ── */
+.btn-end-night {
+  display: block;
+  margin-top: 20px;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.35);
+  text-decoration: none;
+  text-align: center;
+  transition: color 0.2s;
+}
+.btn-end-night:hover { color: rgba(255,255,255,0.7); }
+
+/* ── Ending page ── */
+.page-ending {
+  background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #3d1a5e 100%);
+}
+
+.ending-card {
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+  padding: 16px;
+  animation: fadeIn 1.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.ending-emoji {
+  font-size: 80px;
+  margin-bottom: 28px;
+  animation: sway 3s ease-in-out infinite;
+}
+
+.ending-message {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 24px;
+  padding: 40px 36px;
+}
+
+.ending-message p {
+  font-family: 'Lora', serif;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.88);
+  margin-bottom: 14px;
+}
+
+.ending-sign {
+  font-family: 'Dancing Script', cursive !important;
+  font-size: 1.5rem !important;
+  color: #f9c74f !important;
+  margin-top: 8px;
+}
+
+@media (max-width: 480px) {
+  .ending-emoji { font-size: 56px; }
+  .ending-message { padding: 28px 20px; }
+  .ending-message p { font-size: 1rem; }
+  .ending-sign { font-size: 1.3rem !important; }
 }
 
 .loading {
